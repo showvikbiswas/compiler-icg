@@ -1,0 +1,44 @@
+.MODEL SMALL
+.STACK 100H
+.DATA
+.CODE
+main PROC
+PUSH BP
+MOV BP, SP
+MOV AX, @DATA
+MOV DS, AX
+SUB SP, 2
+SUB SP, 2
+SUB SP, 2
+SUB SP, 2
+MOV CX, 1
+MOV -8[BP], CX
+label_0:
+MOV CX, -8[BP]
+PUSH CX
+MOV CX, 4
+POP AX
+CMP AX, CX
+JL label_1
+MOV CX, 0
+JMP label_2
+label_1:
+MOV CX, 1
+label_2:
+JCXZ label_3
+MOV CX, 3
+MOV -2[BP], CX
+MOV CX, -8[BP]
+INC CX
+MOV -8[BP], CX
+
+JMP label_0
+label_3:
+ADD SP, 8
+main_exit:
+POP BP
+MOV AH, 4CH
+INT 21H
+RET 0
+main ENDP
+END main
