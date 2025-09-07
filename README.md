@@ -1,5 +1,3 @@
-Looking at your codebase, you're asking about creating a README for the `showvikbiswas/compiler-icg` project, which is a C compiler that performs intermediate code generation (ICG) to x86 assembly. <cite/>
-
 # C Compiler with Intermediate Code Generation
 
 A complete C compiler implementation that transforms C source code into x86 assembly language through lexical analysis, syntax analysis, semantic analysis, and code generation phases. [1](#0-0) 
