@@ -1,28 +1,36 @@
 # C Compiler with Intermediate Code Generation
 
-A complete C compiler implementation that transforms C source code into x86 assembly language through lexical analysis, syntax analysis, semantic analysis, and code generation phases. [1](#0-0) 
+A complete C compiler implementation that transforms C source code into x86 assembly language through lexical analysis, syntax analysis, semantic analysis, and code generation phases.
 
+## Key Features
+
+- **Integrated Compilation**: Single-pass compilation with simultaneous parsing and code generation
+- **Hierarchical Scoping**: Proper C-style lexical scoping with nested function and block scopes  
+- **x86 Target**: Generates DOS-compatible 16-bit x86 assembly code
+- **Error Recovery**: Comprehensive error detection and reporting throughout all phases
+- **Optimization**: Basic peephole optimization for redundant instruction elimination
+- 
 ## Main Building Blocks
 
 ### 1. Lexical Analysis Engine
 **Files:** `1805068_scanner.l`, `lex.yy.c`
 
-The lexical analyzer tokenizes C source code using Flex, recognizing keywords, identifiers, constants, operators, and delimiters. [2](#0-1)  It creates `SymbolInfo` objects for each token and handles complex constructs like comments and string literals through state-based processing. [3](#0-2) 
+The lexical analyzer tokenizes C source code using Flex, recognizing keywords, identifiers, constants, operators, and delimiters. It creates `SymbolInfo` objects for each token and handles complex constructs like comments and string literals through state-based processing.
 
 ### 2. Syntax Analysis & Parser
 **Files:** `1805068_parser.y`, `1805068_parser.tab.c`, `1805068_parser.tab.h`
 
-A LALR(1) parser built with GNU Bison that validates C grammar and performs integrated semantic analysis and code generation. [4](#0-3)  The parser handles function definitions, variable declarations, control flow statements, and expressions while simultaneously generating x86 assembly code. [5](#0-4) 
+A LALR(1) parser built with GNU Bison that validates C grammar and performs integrated semantic analysis and code generation. The parser handles function definitions, variable declarations, control flow statements, and expressions while simultaneously generating x86 assembly code.
 
 ### 3. Symbol Management System
 **Files:** `1805068_SymbolTable.h`, `1805068_ScopeTable.h`
 
-A hierarchical symbol table system that manages identifier scoping using a stack-based approach. [6](#0-5)  It supports nested scopes with automatic scope entry/exit and provides symbol lookup that traverses the scope hierarchy. [7](#0-6) 
+A hierarchical symbol table system that manages identifier scoping using a stack-based approach. It supports nested scopes with automatic scope entry/exit and provides symbol lookup that traverses the scope hierarchy. 
 
 ### 4. Assembly Code Generator
 **Files:** `Assembly.h`
 
-Generates x86 assembly code with functions for file initialization, code emission, and runtime support. [8](#0-7)  Includes a complete integer printing function for program output. [9](#0-8) 
+Generates x86 assembly code with functions for file initialization, code emission, and runtime support. Includes a complete integer printing function for program output. 
 
 ## System Architecture & Connections
 
@@ -46,32 +54,19 @@ graph TB
 
 ## Data Flow
 
-1. **Input Processing**: The lexical analyzer reads C source code and creates `SymbolInfo` tokens [10](#0-9) 
+1. **Input Processing**: The lexical analyzer reads C source code and creates `SymbolInfo` tokens 
 
-2. **Parsing & Analysis**: The parser consumes tokens, validates syntax, manages symbol tables, and generates assembly code in a single pass [11](#0-10) 
+2. **Parsing & Analysis**: The parser consumes tokens, validates syntax, manages symbol tables, and generates assembly code in a single pass 
 
-3. **Symbol Management**: The symbol table maintains hierarchical scopes for proper identifier resolution [12](#0-11) 
+3. **Symbol Management**: The symbol table maintains hierarchical scopes for proper identifier resolution  
 
-4. **Code Generation**: Assembly instructions are emitted directly during parsing, with stack frame management and register allocation [13](#0-12) 
+4. **Code Generation**: Assembly instructions are emitted directly during parsing, with stack frame management and register allocation
 
-5. **Output**: The system produces executable x86 assembly code along with detailed compilation logs [14](#0-13) 
-
-## Key Features
-
-- **Integrated Compilation**: Single-pass compilation with simultaneous parsing and code generation
-- **Hierarchical Scoping**: Proper C-style lexical scoping with nested function and block scopes  
-- **x86 Target**: Generates DOS-compatible 16-bit x86 assembly code
-- **Error Recovery**: Comprehensive error detection and reporting throughout all phases
-- **Optimization**: Basic peephole optimization for redundant instruction elimination
+5. **Output**: The system produces executable x86 assembly code along with detailed compilation logs
 
 ## Notes
 
 The compiler uses a traditional architecture but performs code generation during parsing rather than building an intermediate representation, making it efficient for educational purposes while demonstrating all major compiler phases. <cite/>
-
-Wiki pages you might want to explore:
-- [Lexical Analysis (showvikbiswas/compiler-icg)](/wiki/showvikbiswas/compiler-icg#2)
-- [Syntax Analysis (showvikbiswas/compiler-icg)](/wiki/showvikbiswas/compiler-icg#3)
-- [Symbol Management System (showvikbiswas/compiler-icg)](/wiki/showvikbiswas/compiler-icg#4)
 
 ### Citations
 
